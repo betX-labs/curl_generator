@@ -6,8 +6,7 @@ void main() {
   test('test GET method with no query params and headers', () {
     const url = 'https://some.api.com/some/api';
     const expectedReturn = 'curl \'https://some.api.com/some/api\' \\\n'
-        '  --compressed \\\n'
-        '  --insecure';
+        '  --compressed \\';
     final result = Curl.curlOf(url: url);
     expect(expectedReturn, result);
   });
@@ -16,8 +15,7 @@ void main() {
     const url = 'https://some.aoi.com/some/api?some=some&param=param';
     const expectedReturn =
         'curl \'https://some.aoi.com/some/api?some=some&param=param\' \\\n'
-        '  --compressed \\\n'
-        '  --insecure';
+        '  --compressed \\';
     final result = Curl.curlOf(url: url);
     expect(expectedReturn, result);
   });
@@ -26,8 +24,7 @@ void main() {
     const url = 'https://some.aoi.com/some/api';
     const expectedReturn =
         'curl \'https://some.aoi.com/some/api?some=some&param=param\' \\\n'
-        '  --compressed \\\n'
-        '  --insecure';
+        '  --compressed \\';
     const params = {
       'some': 'some',
       'param': 'param',
@@ -47,8 +44,7 @@ void main() {
         '  -H \'Accept: application/json\' \\\n'
         '  -H \'Accept-Language: en-US,en;q=0.9\' \\\n'
         '  -H \'Connection: keep-alive\' \\\n'
-        '  --compressed \\\n'
-        '  --insecure';
+        '  --compressed \\';
     final result = Curl.curlOf(url: url, header: header);
     expect(expectedReturn, result);
   });
@@ -69,8 +65,7 @@ void main() {
         '  -H \'Accept: application/json\' \\\n'
         '  -H \'Accept-Language: en-US,en;q=0.9\' \\\n'
         '  -H \'Connection: keep-alive\' \\\n'
-        '  --compressed \\\n'
-        '  --insecure';
+        '  --compressed \\';
     final result = Curl.curlOf(url: url, header: header, queryParams: params);
     expect(expectedReturn, result);
   });
@@ -84,8 +79,7 @@ void main() {
     };
     const expectedReturn = 'curl \'https://some.aoi.com/some/api\' \\\n'
         '  --data-raw \'{"some":"some","value":"value","intValue":1234}\' \\\n'
-        '  --compressed \\\n'
-        '  --insecure';
+        '  --compressed \\';
     final result = Curl.curlOf(url: url, body: body);
     expect(expectedReturn, result);
   });
@@ -112,14 +106,22 @@ void main() {
         '  -H \'Accept-Language: en-US,en;q=0.9\' \\\n'
         '  -H \'Connection: keep-alive\' \\\n'
         '  --data-raw \'{"some":"some","value":"value","intValue":1234}\' \\\n'
-        '  --compressed \\\n'
-        '  --insecure';
+        '  --compressed \\';
     final result = Curl.curlOf(
       url: url,
       header: header,
       queryParams: params,
       body: body,
     );
+    expect(expectedReturn, result);
+  });
+
+  test('test http call', () {
+    const url = 'http://some.api.com/some/api';
+    const expectedReturn = 'curl \'http://some.api.com/some/api\' \\\n'
+        '  --compressed \\\n'
+        '  --insecure';
+    final result = Curl.curlOf(url: url);
     expect(expectedReturn, result);
   });
 }
