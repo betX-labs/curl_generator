@@ -12,10 +12,10 @@ To use this plugin, add `curl_generator` as a [dependency in your pubspec.yaml f
 
 ```dart
     const url =
-        'https://some.api.com/some/api?some=some&params=params';
+        'http://some.api.com/some/api?some=some&params=params';
         // or
     const url =
-        'https://some.api.com/some/api';
+        'http://some.api.com/some/api';
     const params = {
       'some': 'some',
       'params': 'params',
@@ -40,7 +40,7 @@ To use this plugin, add `curl_generator` as a [dependency in your pubspec.yaml f
       body: body,   //  optional
     );
     //  output will be
-    //  curl 'https://some.api.com/some/api?some=some&params=params' \
+    //  curl 'http://some.api.com/some/api?some=some&params=params' \
     //    -H 'Accept: application/json' \
     //    -H 'Accept-Language: en-US,en;q=0.9' \
     //    -H 'Connection: keep-alive' \
