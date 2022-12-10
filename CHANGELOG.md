@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Update License
+
 ## 0.0.3
 
 * Update License
