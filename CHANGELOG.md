@@ -5,3 +5,7 @@
 ## 0.0.2
 
 * Fix `--insecure` issue
+
+## 0.0.3
+
+* Update License
