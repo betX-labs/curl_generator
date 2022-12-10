@@ -1,11 +1,11 @@
-## 0.0.1
+## 0.0.3
 
-* Initial release
-  
+* Update License
+
 ## 0.0.2
 
 * Fix `--insecure` issue
 
-## 0.0.3
+## 0.0.1
 
-* Update License
+* Initial release
