@@ -58,7 +58,6 @@ class Curl {
       curl = '$curl\n';
       curl = '$curl  --insecure';
     }
-    print(curl);
     return curl;
   }
 }
