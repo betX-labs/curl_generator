@@ -1,5 +1,8 @@
 part of curl_generator;
 
+/// The [Curl] entry point.
+///
+/// To get a curl, call [Curl.curlOf]
 class Curl {
   Curl._();
 
