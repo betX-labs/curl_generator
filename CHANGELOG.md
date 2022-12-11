@@ -1,3 +1,8 @@
+## 0.0.6
+
+* Add Document.
+* Fix Dart Formatter issue
+
 ## 0.0.5
 
 * Update HomePage

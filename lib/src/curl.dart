@@ -1,22 +1,34 @@
 part of curl_generator;
 
-// curl 'https://www.google.com/complete/search?q&cp=0&client=gws-wiz&xssi=t&hl=en-DE&authuser=0&psi=7GuQY9y5G_r-7_UP64S5-A4.1670409199524&nolsbt=1&dpr=4' \
-//   -H 'sec-ch-ua: "Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"' \
-//   -H 'sec-ch-ua-mobile: ?1' \
-//   -H 'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36' \
-//   -H 'sec-ch-ua-arch;' \
-//   -H 'sec-ch-ua-full-version: "108.0.5359.73"' \
-//   -H 'sec-ch-ua-platform-version: "8.0.0"' \
-//   -H 'Referer: https://www.google.com/' \
-//   -H 'sec-ch-ua-full-version-list: "Not?A_Brand";v="8.0.0.0", "Chromium";v="108.0.5359.73", "Google Chrome";v="108.0.5359.73"' \
-//   -H 'sec-ch-ua-bitness: "64"' \
-//   -H 'sec-ch-ua-model: "SM-G955U"' \
-//   -H 'sec-ch-ua-wow64: ?0' \
-//   -H 'sec-ch-ua-platform: "Android"' \
-//   --compressed
 class Curl {
   Curl._();
 
+  /// Generate curl base on provided data.
+  ///
+  /// [queryParams], [header] and [body] are optional.
+  ///
+  /// to add query parameters use [queryParams] or add it manually to the end
+  /// of [url] with `?`
+  ///
+  /// ```dart
+  ///  final example1 = Curl.curlOf(url: 'https://some.api.com/some/path?some=some&query=query');
+  ///// or
+  ///  final example2 = Curl.curlOf(
+  ///    url: 'https://some.api.com/some/path',
+  ///    queryParams: {
+  ///      'some': 'some',
+  ///      'query': 'query',
+  ///    },
+  ///  );
+  ///
+  /// print(example1);
+  /// print(example2);
+  ///// curl 'https://some.api.com/some/path?some=some&query=query' \
+  /////   --compressed \
+  ///
+  ///// curl 'https://some.api.com/some/path?some=some&query=query' \
+  /////   --compressed \
+  /// ```
   static String curlOf({
     required String url,
     Map<String, String> queryParams = const {},
@@ -43,6 +55,7 @@ class Curl {
       curl = '$curl\n';
       curl = '$curl  --insecure';
     }
+    print(curl);
     return curl;
   }
 }

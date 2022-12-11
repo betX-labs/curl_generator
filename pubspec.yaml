@@ -1,6 +1,6 @@
 name: curl_generator
 description: A Flutter package to create simple curl (bash) with params, headers and body.
-version: 0.0.5
+version: 0.0.6
 homepage: https://pub.dev/packages/curl_generator
 repository: https://github.com/P-B1101/curl_generator
 
