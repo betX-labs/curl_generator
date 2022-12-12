@@ -6,6 +6,8 @@ part of curl_generator;
 class Curl {
   Curl._();
 
+  /// final generated curl.
+  ///
   static String _curl = '';
 
   /// Generate curl base on provided data.
