@@ -4,6 +4,8 @@ part of curl_generator;
 ///
 /// To get a curl, call [Curl.curlOf]
 class Curl {
+  /// private constructor
+  ///
   Curl._();
 
   /// final generated curl.
