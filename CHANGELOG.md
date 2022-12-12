@@ -1,3 +1,7 @@
+## 0.0.9
+
+* Add `Content-Type` header for calls that has body.
+
 ## 0.0.8
 
 * Add Example.
