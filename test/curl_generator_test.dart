@@ -180,4 +180,23 @@ void main() {
     );
     expect(expectedReturn, result);
   });
+
+  test('test if body contains an object that cannot directly convert to json',
+      () {
+    const url = 'http://some.api.com/some/api';
+    const expectedReturn = 'curl \'http://some.api.com/some/api\' \\\n'
+        '  -H \'content-Type: application/json\' \\\n'
+        '  --data-raw \'{"some":"value","test":"Curl"}\' \\\n'
+        '  --compressed \\\n'
+        '  --insecure';
+    final result = Curl.curlOf(
+      url: url,
+      header: {'content-Type': 'application/json'},
+      body: {
+        'some': 'value',
+        'test': Curl,
+      },
+    );
+    expect(expectedReturn, result);
+  });
 }

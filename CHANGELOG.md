@@ -1,3 +1,7 @@
+## 0.0.11
+
+* Bug fix on body that contains value that cannot be converted to json.
+
 ## 0.0.10
 
 * Remove unnecessary print.

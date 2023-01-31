@@ -82,6 +82,10 @@ class Curl {
     if (!_curl.toLowerCase().contains('content-type')) {
       _curl = '$_curl  -H \'Content-Type: application/json\' \\\n';
     }
-    _curl = '$_curl  --data-raw \'${json.encode(body)}\' \\\n';
+    final encodedBody = json.encode(
+      body,
+      toEncodable: (object) => object.toString(),
+    );
+    _curl = '$_curl  --data-raw \'$encodedBody\' \\\n';
   }
 }
