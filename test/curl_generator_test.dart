@@ -3,6 +3,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:curl_generator/curl_generator.dart';
 
 void main() {
+  test('test method if it is not null', () {
+    const url = 'https://some.api.com/some/api';
+    const expectedReturn =
+        'curl --request POST \'https://some.api.com/some/api\' \\\n'
+        '  --compressed \\';
+    final result = Curl.curlOf(url: url, method: 'POST');
+    expect(expectedReturn, result);
+  });
+
+  test('test ignore get method', () {
+    const url = 'https://some.api.com/some/api';
+    const expectedReturn = 'curl \'https://some.api.com/some/api\' \\\n'
+        '  --compressed \\';
+    final result = Curl.curlOf(url: url, method: 'GET');
+    expect(expectedReturn, result);
+  });
   test('test GET method with no query params and headers', () {
     const url = 'https://some.api.com/some/api';
     const expectedReturn = 'curl \'https://some.api.com/some/api\' \\\n'

@@ -40,11 +40,13 @@ class Curl {
   /// ```
   static String curlOf({
     required String url,
+    String? method,
     Map<String, String> queryParams = const {},
     Map<String, String> header = const {},
     Map<String, dynamic> body = const {},
   }) {
     final isSecure = url.startsWith('https');
+    _addMethod(method);
     _addUrl(url);
     _addQueryParams(queryParams);
     _curl = '$_curl\' \\\n';
@@ -58,8 +60,22 @@ class Curl {
     return _curl;
   }
 
-  /// intiialize [_curl] with [url].
-  static void _addUrl(String url) => _curl = 'curl \'$url';
+  /// intiialize [_curl] with [method] if it is not null.
+  static void _addMethod(String? method) {
+    if (method == null) return;
+    if (method.toUpperCase() == 'GET') return;
+    _curl = 'curl --request ${method.toUpperCase()}';
+  }
+
+  /// intiialize [_curl] with [url] if [_curl] is empty
+  /// else add url to existing [_curl].
+  static void _addUrl(String url) {
+    if (_curl.isEmpty) {
+      _curl = 'curl \'$url';
+      return;
+    }
+    _curl = '$_curl \'$url';
+  }
 
   /// add [queryParams] to [_curl]
   static void _addQueryParams(Map<String, String> queryParams) {
