@@ -45,6 +45,7 @@ class Curl {
     Map<String, String> header = const {},
     Map<String, dynamic> body = const {},
   }) {
+    _curl = '';
     final isSecure = url.startsWith('https');
     _addMethod(method);
     _addUrl(url);

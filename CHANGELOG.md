@@ -1,3 +1,7 @@
+## 0.0.13
+
+* Bug fix on cache old request curl.
+* 
 ## 0.0.12
 
 * add method.
