@@ -46,18 +46,19 @@ class Curl {
     Map<String, dynamic> body = const {},
   }) {
     _curl = '';
-    final isSecure = url.startsWith('https');
     _addMethod(method);
     _addUrl(url);
     _addQueryParams(queryParams);
     _curl = '$_curl\' \\\n';
+
+    final isSecure = url.startsWith('https');
+    if (!isSecure) {
+      _curl = '$_curl  --insecure \\\n';
+    }
+    _curl = '$_curl  --compressed \\\n';
+
     _addHeaders(header);
     if (body.isNotEmpty) _addBody(body);
-    _curl = '$_curl  --compressed \\';
-    if (!isSecure) {
-      _curl = '$_curl\n';
-      _curl = '$_curl  --insecure';
-    }
     return _curl;
   }
 
@@ -99,10 +100,13 @@ class Curl {
     if (!_curl.toLowerCase().contains('content-type')) {
       _curl = '$_curl  -H \'Content-Type: application/json\' \\\n';
     }
-    final encodedBody = json.encode(
-      body,
-      toEncodable: (object) => object.toString(),
+    final encodedBody = JsonEncoder.withIndent('  ').convert(
+      body
     );
-    _curl = '$_curl  --data-raw \'$encodedBody\' \\\n';
+    _curl = '''$_curl  --data-binary @- << EOF
+$encodedBody
+EOF
+''';
+
   }
 }
